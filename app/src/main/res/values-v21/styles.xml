@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="actionBarStyle">@style/ActionBarStyle</item>
+        <item name="windowActionBar">false</item>
+
+	    <item name="colorPrimary">@color/cpb_red</item>
+	    <item name="colorPrimaryDark">@color/cpb_red_dark</item>
+
+    </style>
+
+</resources>

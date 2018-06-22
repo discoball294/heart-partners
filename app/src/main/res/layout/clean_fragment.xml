@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blue"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="33dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <pl.bclogic.pulsator4droid.library.PulsatorLayout
+            android:id="@+id/pulsator_arc"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            app:pulse_color="@color/white"
+            app:pulse_count="4"
+            app:pulse_duration="7000"
+            app:pulse_interpolator="AccelerateDecelerate"
+            app:pulse_repeat="0">
+
+            <com.github.lzyzsd.circleprogress.ArcProgress
+                android:id="@+id/arc_progress"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                app:arc_finished_color="@color/white"
+                app:arc_max="200"
+                app:arc_stroke_width="8dp"
+                app:arc_suffix_text_padding="20dp"
+                app:arc_text_color="@color/white"
+                app:arc_text_size="50dp"
+                app:arc_unfinished_color="#e98f8a"
+                custom:arc_bottom_text="HEART RATE"
+                app:arc_bottom_text_size="15dp"
+                custom:arc_progress="55"
+                custom:arc_suffix_text="bpm" />
+        </pl.bclogic.pulsator4droid.library.PulsatorLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:gravity="center"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:tint="@color/material_light_green_500"
+                android:src="@drawable/ic_heart_pulse_red"/>
+
+            <customfonts.MyTextView_Roboto_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="Status"
+                android:textColor="@color/black"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_video"/>
+
+            <customfonts.MyTextView_Roboto_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:text="Video Manager"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:gravity="center"
+
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_network_speed"/>
+
+            <customfonts.MyTextView_Roboto_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:text="Network Meter"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_monitering"/>
+
+            <customfonts.MyTextView_Roboto_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:text="Cellular Monitering"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
