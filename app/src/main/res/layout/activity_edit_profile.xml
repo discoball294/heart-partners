@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <xyz.bryankristian.heartparts.customfonts.MyEditText
+            android:id="@+id/text_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#f0f0f4"
+            android:drawablePadding="16dp"
+            android:hint="Nama"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#000"
+
+            />
+
+        <xyz.bryankristian.heartparts.customfonts.MyEditText
+            android:id="@+id/text_tempat_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#f0f0f4"
+            android:drawablePadding="16dp"
+            android:hint="Tempat Lahir"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#000"
+
+            />
+
+        <xyz.bryankristian.heartparts.customfonts.MyEditText
+            android:id="@+id/text_tanggal_lahir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#f0f0f4"
+            android:drawablePadding="16dp"
+            android:hint="Tanggal Lahir"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#000"
+            android:focusable="false"
+            />
+
+        <xyz.bryankristian.heartparts.customfonts.MyEditText
+            android:id="@+id/text_alamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#f0f0f4"
+            android:drawablePadding="16dp"
+            android:hint="Alamat"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#000"
+            />
+
+        <xyz.bryankristian.heartparts.customfonts.MyEditText
+            android:id="@+id/text_telepon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#f0f0f4"
+            android:drawablePadding="16dp"
+            android:hint="Telepon"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#000"
+            />
+
+        <xyz.bryankristian.heartparts.customfonts.MyEditText
+            android:id="@+id/text_bb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="#f0f0f4"
+            android:drawablePadding="16dp"
+            android:hint="Berat Badan"
+            android:inputType="text"
+            android:padding="12dp"
+            android:textColor="#000"
+            />
+
+        <ProgressBar
+            android:id="@+id/progressBarUser"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="30dp"
+            android:indeterminateDrawable="@drawable/progress"
+            android:visibility="gone" />
+
+
+        <xyz.bryankristian.heartparts.customfonts.MyRegulerText
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="70dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/rounded1"
+            android:padding="14dp"
+            android:text="Simpan"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+</ScrollView>
+
+
