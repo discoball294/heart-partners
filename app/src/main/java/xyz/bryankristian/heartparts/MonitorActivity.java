@@ -39,46 +39,16 @@ public class MonitorActivity extends Fragment {
         frameLayout = (FrameLayout) view.findViewById(R.id.framelayout);
 
 
-        BottomBar bottomBar = (BottomBar) view.findViewById(R.id.bottombar);
-        for (int i = 0; i < bottomBar.getTabCount(); i++) {
-            bottomBar.getTabAtPosition(i).setGravity(Gravity.CENTER_VERTICAL);
-        }
+        replace_fragment(new MonitorFragment());
 
-
-
-
-
-         /*roughike bottombar library code is here*/
-
-        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
-
-            @Override
-            public void onTabSelected(@IdRes int tabId) {
-                Fragment fragment = null;
-                switch (tabId) {
-                    case R.id.clean:
-                        replace_fragment(new MonitorFragment());
-                        break;
-                    case R.id.wifi:
-                        replace_fragment(new MonitorFragment());
-                        break;
-                    case R.id.more:
-                        replace_fragment(new MonitorFragment());
-                        break;
-
-
-                }
-
-
-            }
-        });
     }
 
     public void replace_fragment(Fragment fragment) {
+        String fragmentTag = "frTag";
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.framelayout, fragment);
+        transaction.replace(R.id.framelayout, fragment, fragmentTag);
         transaction.commit();
     }
 
-    }
+}
 

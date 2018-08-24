@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/text_beat"
+            android:layout_width="90dp"
+            android:layout_height="60dp"
+            android:textColor="@color/material_red_500"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="50sp"
+            android:text="100"/>
+        <TextView
+            android:id="@+id/bpm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:textSize="12sp"
+            android:gravity="bottom"
+            android:textColor="@color/material_red_500"
+            android:layout_toEndOf="@id/text_beat"
+            android:text="bpm" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/bpm"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/beat_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                android:textSize="20sp"
+                tools:text="Nama" />
+
+            <TextView
+                android:id="@+id/history_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-condensed"
+                tools:text="Tanggal"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

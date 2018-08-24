@@ -3,15 +3,21 @@ package xyz.bryankristian.heartparts;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothGattCharacteristic;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -35,12 +41,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
+
+import xyz.bryankristian.heartparts.fragment.MonitorFragment;
 import xyz.bryankristian.heartparts.heartpartners.R;
+import xyz.bryankristian.heartparts.helpers.CustomBluetoothProfile;
+import xyz.bryankristian.heartparts.helpers.MiBand2Helper;
+import xyz.bryankristian.heartparts.model.HeartRate;
 import xyz.bryankristian.heartparts.model.User;
 import xyz.bryankristian.heartparts.services.MyService;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements MiBand2Helper.BLEAction,NavigationView.OnNavigationItemSelectedListener {
 
     FirebaseAuth auth;
     public FirebaseUser user;
@@ -50,6 +62,12 @@ public class MainActivity extends AppCompatActivity
     private View headerView;
     private NavigationView navigationView;
     private FirebaseDatabase database;
+    MiBand2Helper helper = null;
+    Handler handler = new Handler(Looper.getMainLooper());
+    NotificationCompat.Builder notificationBuilder;
+    NotificationManager notificationManager;
+    String heartStatus;
+    DatabaseReference heartRateDb;
 
 
     @Override
@@ -62,24 +80,28 @@ public class MainActivity extends AppCompatActivity
 
         auth = FirebaseAuth.getInstance();
         user = FirebaseAuth.getInstance().getCurrentUser();
+        heartRateDb = FirebaseDatabase.getInstance().getReference("heartRate");
+
+        initMiBand();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         headerView = navigationView.getHeaderView(0);
         headerTextEmail = (TextView)headerView.findViewById(R.id.header_textView_email);
         headerTextNama = (TextView)headerView.findViewById(R.id.header_text_name);
-        headerTextEmail.setText(user.getEmail());
+        if (user!=null){
+            headerTextEmail.setText(user.getEmail());
+            Log.d(TAG,"email is "+user.getEmail());
+            readData();
+        }
 
-
-        Log.d(TAG,"email is "+user.getEmail());
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -90,9 +112,25 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         displaySelectedScreen(R.id.nav_home);
-        readData();
-        startService(new Intent(this, MyService.class));
 
+        //startService(new Intent(this, MyService.class));
+        //showNotif("Normal","85");
+
+    }
+
+    private void initMiBand(){
+        helper = new MiBand2Helper(MainActivity.this, handler);
+        helper.addListener(this);
+
+        helper.findBluetoothDevice(myBluetoothAdapter, "MI");
+        helper.ConnectToGatt();
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        setupHeartBeat();
     }
 
     private void readData(){
@@ -114,8 +152,8 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void showNotif(){
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    private void showNotif(String status, String heartRate){
+        notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL_ID = "my_channel_id_01";
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -131,7 +169,7 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+        notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
 
         notificationBuilder.setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
@@ -139,15 +177,20 @@ public class MainActivity extends AppCompatActivity
                 .setSmallIcon(R.drawable.ic_heart_pulse)
                 .setTicker("Hearty365")
                 //     .setPriority(Notification.PRIORITY_MAX)
-                .setContentTitle("Default notification")
-                .setContentText("Lorem ipsum dolor sit amet, consectetur adipiscing elit.")
-                .setContentInfo("Info");
+                .setContentTitle(status)
+                .setContentText("Current Heart Rate is "+heartRate)
+                .setContentInfo("Info")
+                .setOngoing(true)
+                .setColor(ContextCompat.getColor(MainActivity.this, R.color.material_red_500))
+                .setVibrate(new long[]{0, 100, 50, 100});
+
+
 
         notificationManager.notify(/*notification id*/1, notificationBuilder.build());
 
     }
 
-
+    final BluetoothAdapter myBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
     @Override
     public void onBackPressed() {
@@ -219,6 +262,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_settings:
                 fragment = new ProfileActivity();
                 break;
+
         }
 
         if (fragment!=null){
@@ -249,5 +293,104 @@ public class MainActivity extends AppCompatActivity
             isAuthListenerSet = false;
         }
         //Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDisconnect() {
+        Log.d(TAG, "state: connected");
+    }
+
+    @Override
+    public void onConnect() {
+        Log.d(TAG, "state: disconnected");
+    }
+
+    @Override
+    public void onRead(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+
+    }
+
+    @Override
+    public void onWrite(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic, int status) {
+
+    }
+
+    @Override
+    public void onNotification(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {
+        UUID alertUUID = characteristic.getUuid();
+        if (alertUUID.equals(CustomBluetoothProfile.UUID_NOTIFICATION_HEARTRATE)) {
+            final byte hearbeat =
+                    characteristic.getValue()[1];
+            final int heartRate = Integer.parseInt(Byte.toString(hearbeat));
+
+            handler.post(() -> {
+                MonitorFragment fr = (MonitorFragment) getSupportFragmentManager().findFragmentByTag("frTag");
+                fr.setHeartRateText(Byte.toString(hearbeat));
+                if ( heartRate > 100){
+                    heartStatus = "Too High";
+                }else if (heartRate < 60){
+                    heartStatus = "Too Low";
+                }else {
+                    heartStatus = "Normal";
+                }
+
+                HeartRate hr = new HeartRate(System.currentTimeMillis(),heartRate,user.getUid());
+                heartRateDb.push().setValue(hr);
+
+                showNotif(heartStatus,Byte.toString(hearbeat));
+                Toast.makeText(MainActivity.this,
+                        "Heartbeat: " + Byte.toString(hearbeat)
+                        , Toast.LENGTH_SHORT).show();
+
+            });
+        }
+        else if (alertUUID.equals(CustomBluetoothProfile.UUID_BUTTON_TOUCH)) {
+            handler.post(() -> {
+                getNewHeartBeat();
+                Toast.makeText(MainActivity.this,
+                        "Button Press! "
+                        , Toast.LENGTH_SHORT).show();
+            });
+        }
+    }
+
+    public void setupHeartBeat() {
+        /*
+        Steps to read heartbeat:
+            - Register Notification (like in touch press)
+                - Extra step with description
+            - Write predefined bytes to control_point to trigger measurement
+            - Listener will get result
+        */
+
+        if (helper != null)
+            helper.getNotificationsWithDescriptor(
+                    CustomBluetoothProfile.UUID_SERVICE_HEARTBEAT,
+                    CustomBluetoothProfile.UUID_NOTIFICATION_HEARTRATE,
+                    CustomBluetoothProfile.UUID_DESCRIPTOR_UPDATE_NOTIFICATION
+            );
+
+        // Need to wait before first trigger, maybe something about the descriptor....
+        /*
+        Toast.makeText(MainActivity.this, "Wait for heartbeat setup...", Toast.LENGTH_LONG).show();
+        try {
+            Thread.sleep(5000,0);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        */
+    }
+
+    public void getNewHeartBeat()  {
+        if (helper == null || !helper.isConnected()) {
+            Toast.makeText(MainActivity.this, "Please setup first!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        helper.writeData(
+                CustomBluetoothProfile.UUID_SERVICE_HEARTBEAT,
+                CustomBluetoothProfile.UUID_START_HEARTRATE_CONTROL_POINT,
+                CustomBluetoothProfile.BYTE_NEW_HEART_RATE_SCAN
+        );
     }
 }

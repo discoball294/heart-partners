@@ -35,30 +35,7 @@
     <!--roughike bottombar library used-->
 
 
-    <View
-        android:id="@+id/view_line"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="56dp"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:background="@drawable/shadow"/>
-
-
-    <com.roughike.bottombar.BottomBar
-        android:id="@+id/bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:gravity="bottom"
-        app:bb_activeTabColor="#ffffff"
-        app:bb_badgesHideWhenActive="false"
-        app:bb_inActiveTabColor="#a4ebfe"
-        app:bb_showShadow="false"
-        app:bb_tabXmlResource="@xml/tab"
-        app:paddingStart="10dp"
-        app:bb_titleTextAppearance="@style/botoombar_textchange"
-        app:bb_titleTypeFace="fonts/Roboto-Regular.ttf" />
+    
 
 
 </RelativeLayout>

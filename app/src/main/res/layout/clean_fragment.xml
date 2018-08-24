@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="85dp"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -32,6 +32,7 @@
                 android:layout_height="250dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                app:arc_bottom_text_size="15dp"
                 app:arc_finished_color="@color/white"
                 app:arc_max="200"
                 app:arc_stroke_width="8dp"
@@ -40,7 +41,6 @@
                 app:arc_text_size="50dp"
                 app:arc_unfinished_color="#e98f8a"
                 custom:arc_bottom_text="HEART RATE"
-                app:arc_bottom_text_size="15dp"
                 custom:arc_progress="55"
                 custom:arc_suffix_text="bpm" />
         </pl.bclogic.pulsator4droid.library.PulsatorLayout>
@@ -76,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:tint="@color/material_light_green_500"
-                android:src="@drawable/ic_heart_pulse_red"/>
+                android:src="@drawable/ic_smile"/>
 
             <customfonts.MyTextView_Roboto_Regular
                 android:layout_width="wrap_content"
@@ -99,7 +99,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_video"/>
+                android:tint="@color/material_light_green_500"
+                android:src="@drawable/ic_checkmark_circle"/>
 
             <customfonts.MyTextView_Roboto_Regular
                 android:layout_width="wrap_content"
@@ -108,7 +109,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp"
-                android:text="Video Manager"/>
+                android:text="Mi Band Connected"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -130,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_network_speed"/>
+                android:src="@drawable/ic_heart_pulse"/>
 
             <customfonts.MyTextView_Roboto_Regular
                 android:layout_width="wrap_content"
@@ -139,12 +140,14 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp"
-                android:text="Network Meter"/>
+                android:text="Info"/>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_history"
             android:layout_weight="1"
             android:layout_width="0dp"
+            android:clickable="true"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -153,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_monitering"/>
+                android:src="@drawable/ic_history"/>
 
             <customfonts.MyTextView_Roboto_Regular
                 android:layout_width="wrap_content"
@@ -162,7 +165,7 @@
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:layout_marginTop="5dp"
-                android:text="Cellular Monitering"/>
+                android:text="History"/>
         </LinearLayout>
     </LinearLayout>
 
