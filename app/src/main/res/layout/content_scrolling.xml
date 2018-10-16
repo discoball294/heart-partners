@@ -29,7 +29,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_phone_black" />
+                android:src="@drawable/ic_user"
+                android:tint="@color/cpb_red"
+                />
 
             <TextView
                 android:id="@+id/scroll_user_name"
@@ -74,7 +76,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_email_black" />
+                android:src="@drawable/ic_phone_black" />
 
             <TextView
                 android:id="@+id/scroll_user_tel"
@@ -121,7 +123,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginRight="@dimen/activity_horizontal_margin"
-                android:src="@drawable/ic_location_on_black" />
+                android:src="@drawable/ic_email_black" />
 
             <TextView
                 android:id="@+id/scroll_user_email"

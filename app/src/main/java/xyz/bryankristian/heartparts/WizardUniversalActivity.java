@@ -78,6 +78,9 @@ public class WizardUniversalActivity extends AppCompatActivity {
 					pager.setCurrentItem(pager.getCurrentItem() - 1);
 				}
 				setNavigator();*/
+                Intent intent = new Intent(WizardUniversalActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 Toast.makeText(WizardUniversalActivity.this, "Skip",
                         Toast.LENGTH_SHORT).show();
             }
@@ -91,7 +94,7 @@ public class WizardUniversalActivity extends AppCompatActivity {
                 if (pager.getCurrentItem() != (pager.getAdapter().getCount() - 1)) {
                     pager.setCurrentItem(pager.getCurrentItem() + 1);
                 } else {
-                    Intent intent = new Intent(WizardUniversalActivity.this, MainActivity.class);
+                    Intent intent = new Intent(WizardUniversalActivity.this, LoginActivity.class);
                     startActivity(intent);
                     finish();
 

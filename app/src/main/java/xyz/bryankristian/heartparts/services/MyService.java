@@ -28,7 +28,7 @@ import xyz.bryankristian.heartparts.helpers.MiBand2Helper;
 
 public class MyService extends Service implements MiBand2Helper.BLEAction {
 
-    public static final long NOTIFY_INTERVAL = 5*10000;
+    public static final long NOTIFY_INTERVAL = 6*10000;
 
     private Handler handler = new Handler();
 
@@ -136,7 +136,7 @@ public class MyService extends Service implements MiBand2Helper.BLEAction {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(MyService.this, "Invoked every 0.83 minutes", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MyService.this, "Invoked every 0.83 minutes", Toast.LENGTH_SHORT).show();
                     getNewHeartBeat();
                 }
             });

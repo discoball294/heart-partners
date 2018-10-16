@@ -122,14 +122,6 @@
             android:textColor="#fff"
             android:textSize="16dp" />
 
-        <xyz.bryankristian.heartparts.customfonts.MyTextView
-            android:id="@+id/fb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:text="Connect with Facebook"
-            android:textSize="16dp" />
     </LinearLayout>
 </ScrollView>
 

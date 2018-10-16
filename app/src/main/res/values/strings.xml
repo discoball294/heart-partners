@@ -221,7 +221,18 @@
     <string name="whitelist_menu">Whitelist</string>
     <string name="history_menu">History</string>
     <string name="title_item">Advanced</string>
-    <string name="settings_menu">Settings</string>
+    <string name="settings_menu">Edit Profile</string>
 
     <string name="agree">Agree to the privacy policy and the end user licence agreement</string>
+
+
+    <string name="chart_menu">Chart</string>
+    <string name="prompt_range">Select range</string>
+    <string-array name="date_range">
+        <item>Today</item>
+        <item>Last 7 days</item>
+        <item>Last 30 days</item>
+        <item>All Time</item>
+    </string-array>
+
 </resources>

@@ -44,7 +44,7 @@ public class SignupActivity extends AppCompatActivity {
 
         signup = (TextView)findViewById(R.id.signup);
         signin = (TextView)findViewById(R.id.signin);
-        fb = (TextView)findViewById(R.id.fb);
+
         signUpButton = (TextView)findViewById(R.id.signup_button);
         textEmail = (EditText)findViewById(R.id.email);
         textPassword = (EditText)findViewById(R.id.password);

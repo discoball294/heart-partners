@@ -11,19 +11,24 @@ public class User {
     private String alamat;
     private String telepon;
     private String beratBadan;
+    private String email;
+    private String oneSignalPlayerId;
 
     public User(){
 
     }
 
-    public User(String nama, String tempatLahir, String tanggalLahir, String alamat, String telepon, String beratBadan){
+    public User(String nama, String tempatLahir, String tanggalLahir, String alamat, String telepon, String beratBadan, String email, String oneSignalPlayerId) {
         this.nama = nama;
         this.tempatLahir = tempatLahir;
         this.tanggalLahir = tanggalLahir;
         this.alamat = alamat;
         this.telepon = telepon;
         this.beratBadan = beratBadan;
+        this.email = email;
+        this.oneSignalPlayerId = oneSignalPlayerId;
     }
+
 
     public String getNama() {
         return nama;
@@ -47,5 +52,21 @@ public class User {
 
     public String getBeratBadan() {
         return beratBadan;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOneSignalPlayerId() {
+        return oneSignalPlayerId;
+    }
+
+    public void setOneSignalPlayerId(String oneSignalPlayerId) {
+        this.oneSignalPlayerId = oneSignalPlayerId;
     }
 }

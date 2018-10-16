@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
@@ -10,25 +11,8 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <TextView
-            android:id="@+id/text_beat"
-            android:layout_width="85dp"
-            android:layout_height="60dp"
-            android:textColor="@color/material_red_500"
-            android:fontFamily="sans-serif-condensed"
-            android:textSize="50sp"
-            android:text="100"/>
-        <TextView
-            android:id="@+id/bpm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed"
-            android:textSize="12sp"
-            android:textColor="@color/material_red_500"
-            android:layout_toEndOf="@id/text_beat"
-            android:text="bpm" />
-
         <LinearLayout
+            android:id="@+id/linear_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -36,7 +20,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/beat_status"
+                android:id="@+id/nama_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
@@ -44,15 +28,18 @@
                 tools:text="Nama" />
 
             <TextView
-                android:id="@+id/history_date"
+                android:id="@+id/email_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-condensed"
-                tools:text="Tanggal"
-                android:layout_marginTop="10dp"/>
+                tools:text="email" />
 
         </LinearLayout>
 
+
     </RelativeLayout>
+
+
 
 </android.support.v7.widget.CardView>

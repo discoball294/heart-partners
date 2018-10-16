@@ -9,10 +9,6 @@
             android:icon="@drawable/ic_heart_pulse"
             android:title="@string/heart_monitor_menu" />
         <item
-            android:id="@+id/nav_maps"
-            android:icon="@drawable/ic_location_pin"
-            android:title="@string/location_menu" />
-        <item
             android:id="@+id/nav_whitelists"
             android:icon="@drawable/ic_user"
             android:title="@string/whitelist_menu" />
@@ -20,6 +16,10 @@
             android:id="@+id/nav_history"
             android:icon="@drawable/ic_history"
             android:title="@string/history_menu" />
+        <item
+            android:id="@+id/nav_chart"
+            android:icon="@drawable/ic_heart_pulse"
+            android:title="@string/chart_menu" />
     </group>
 
     <item android:title="@string/title_item">
@@ -28,10 +28,6 @@
                 android:id="@+id/nav_settings"
                 android:icon="@drawable/ic_settings"
                 android:title="@string/settings_menu" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
         </menu>
     </item>
 

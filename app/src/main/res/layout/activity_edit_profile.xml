@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+
         <xyz.bryankristian.heartparts.customfonts.MyEditText
             android:id="@+id/text_nama"
             android:layout_width="match_parent"
@@ -25,7 +26,6 @@
             android:textColor="#000"
 
             />
-
         <xyz.bryankristian.heartparts.customfonts.MyEditText
             android:id="@+id/text_tempat_lahir"
             android:layout_width="match_parent"

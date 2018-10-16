@@ -1,8 +1,10 @@
 package xyz.bryankristian.heartparts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,11 +26,12 @@ import xyz.bryankristian.heartparts.heartpartners.R;
 import xyz.bryankristian.heartparts.model.User;
 
 
-public class ProfileActivity extends Fragment {
+public class ProfileActivity extends Fragment implements View.OnClickListener {
 
     DatabaseReference databaseUser;
     FirebaseUser user;
     TextView scrollName, scrollTel, scrollEmail;
+    FloatingActionButton editProfil;
 
     @Nullable
     @Override
@@ -47,11 +50,15 @@ public class ProfileActivity extends Fragment {
 
         databaseUser = FirebaseDatabase.getInstance().getReference("users");
 
+        editProfil = view.findViewById(R.id.edit_profile);
+
         scrollName = view.findViewById(R.id.scroll_user_name);
         scrollTel = view.findViewById(R.id.scroll_user_tel);
         scrollEmail = view.findViewById(R.id.scroll_user_email);
         scrollEmail.setText(user.getEmail());
         readData();
+
+        editProfil.setOnClickListener(this);
 
     }
 
@@ -75,4 +82,9 @@ public class ProfileActivity extends Fragment {
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(getActivity(), EditUserActivity.class);
+        startActivity(intent);
+    }
 }

@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.onesignal.OneSignal;
 
 import xyz.bryankristian.heartparts.heartpartners.R;
 import xyz.bryankristian.heartparts.customfonts.MyRegulerText;
@@ -40,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() != null) {
+
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
 
         boolean check = sharedPreferences.getBoolean("firstTime", true);
         if (check) {
+
             editor.putBoolean("firstTime", false);
             editor.apply();
             Intent intent = new Intent(this, WizardUniversalActivity.class);
@@ -63,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
         signup = (TextView) findViewById(R.id.signup);
         signin = (TextView) findViewById(R.id.signin);
-        fb = (TextView) findViewById(R.id.fb);
+
         account = (TextView) findViewById(R.id.account);
         textEmail = (EditText) findViewById(R.id.text_email);
         textPassword = (EditText) findViewById(R.id.text_password);
@@ -73,49 +76,40 @@ public class LoginActivity extends AppCompatActivity {
         signin.getBackground().setAlpha(150);
 
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent it = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(it);
-                finish();
-            }
+        signup.setOnClickListener(v -> {
+            Intent it = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(it);
+            finish();
         });
 
-        buttonSignin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = textEmail.getText().toString();
-                final String password = textPassword.getText().toString();
+        buttonSignin.setOnClickListener(v -> {
+            String email = textEmail.getText().toString();
+            final String password = textPassword.getText().toString();
 
-                if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(LoginActivity.this, "Enter email address", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                progressBar.setVisibility(View.VISIBLE);
-                auth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (!task.isSuccessful()) {
-                                    if (password.length() < 6) {
-                                        textPassword.setError(getString(R.string.minimum_password));
-                                    } else {
-                                        Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-                                    }
-                                } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-                            }
-                        });
+            if (TextUtils.isEmpty(email)) {
+                Toast.makeText(LoginActivity.this, "Enter email address", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            if (TextUtils.isEmpty(password)) {
+                Toast.makeText(LoginActivity.this, "Enter Password", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            progressBar.setVisibility(View.VISIBLE);
+            auth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(LoginActivity.this, task -> {
+                        if (!task.isSuccessful()) {
+                            if (password.length() < 6) {
+                                textPassword.setError(getString(R.string.minimum_password));
+                            } else {
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                            }
+                        } else {
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
         });
 
 

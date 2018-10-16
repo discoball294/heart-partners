@@ -44,11 +44,12 @@
     <include layout="@layout/content_scrolling" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/edit_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_shapes_2"
+        android:src="@drawable/ic_pencil"
+        android:tint="@color/white"
         app:backgroundTint="@color/material_red_600"
         app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="bottom|end" />

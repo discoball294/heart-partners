@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="xyz.bryankristian.heartparts.MyFirebase"
@@ -47,7 +50,18 @@
 
         <service android:name="xyz.bryankristian.heartparts.services.MyService" />
 
-        <activity android:name="xyz.bryankristian.heartparts.History"></activity>
+        <activity android:name="xyz.bryankristian.heartparts.History" />
+        <activity android:name="xyz.bryankristian.heartparts.WhitelistActivity" />
+        <activity android:name="xyz.bryankristian.heartparts.WhitelistAdapter" />
+        <activity android:name="xyz.bryankristian.heartparts.SearchWhitelistActivity" />
+
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
+
+        <activity android:name="xyz.bryankristian.heartparts.FaqActivity" />
+        <activity android:name="xyz.bryankristian.heartparts.SettingsActivity" />
+        <activity android:name="xyz.bryankristian.heartparts.ChartActivity"></activity>
     </application>
 
 </manifest>
